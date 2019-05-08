@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="561.0" prefWidth="698.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.registerController">
+
+   <center>
+
+      <VBox prefHeight="400.0" prefWidth="459.0" BorderPane.alignment="CENTER">
+
+         <children>
+
+            <Text fill="#00a876" strokeType="OUTSIDE" strokeWidth="0.0" text=" REGISTER" textAlignment="CENTER" wrappingWidth="226.21875">
+
+               <font>
+
+                  <Font name="Comic Sans MS Bold" size="39.0" />
+
+               </font>
+
+            </Text>
+            <Label prefHeight="21.0" prefWidth="75.0" text="Name" />
+
+            <TextField fx:id="name" style="-fx-background-color: transparent; -fx-border-color: #00a876#00a876;">
+
+               <VBox.margin>
+
+                  <Insets bottom="10.0" top="10.0" />
+
+               </VBox.margin>
+
+            </TextField>
+            <Label prefHeight="21.0" prefWidth="88.0" text="UserName" />
+
+            <TextField fx:id="username" layoutX="10.0" layoutY="20.0" style="-fx-background-color: transparent; -fx-border-color: #00a876#00a876;">
+
+               <VBox.margin>
+
+                  <Insets bottom="10.0" top="10.0" />
+
+               </VBox.margin>
+
+            </TextField>
+            <Label prefHeight="21.0" prefWidth="60.0" text="Email" />
+
+            <TextField fx:id="email" layoutX="10.0" layoutY="59.0" style="-fx-background-color: white; -fx-border-color: #00a876#00a876;">
+
+               <VBox.margin>
+
+                  <Insets bottom="10.0" top="10.0" />
+
+               </VBox.margin>
+
+            </TextField>
+            <Label text="Password" />
+            <PasswordField fx:id="password" style="-fx-border-color: #00a876#00a876;">
+               <VBox.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </VBox.margin>
+            </PasswordField>
+            <Label text="Confirm Password" />
+            <PasswordField fx:id="confirm" style="-fx-border-color: #00a876#00a876;">
+               <VBox.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </VBox.margin>
+            </PasswordField>
+
+            <Button mnemonicParsing="false" onAction="#signUp" prefHeight="52.0" prefWidth="215.0" style="-fx-background-color: #00a876#00a876 #00a876#00a876;" text="Register">
+
+               <VBox.margin>
+
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+
+               </VBox.margin>
+
+            </Button>
+            <Button fx:id="goBackToLogin" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#goBackToLogin" prefHeight="31.0" prefWidth="255.0" style="-fx-background-color: transparent;" text="Back To Login">
+               <VBox.margin>
+                  <Insets left="10.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="Comic Sans MS Italic" size="15.0" />
+               </font>
+            </Button>
+
+         </children>
+
+      </VBox>
+
+   </center>
+
+   <right>
+
+      <Region prefHeight="519.0" prefWidth="225.0" BorderPane.alignment="CENTER">
+
+         <BorderPane.margin>
+
+            <Insets />
+
+         </BorderPane.margin>
+
+      </Region>
+
+   </right>
+
+   <top>
+
+      <Region prefHeight="42.0" prefWidth="600.0" BorderPane.alignment="CENTER" />
+
+   </top>
+
+   <left>
+
+      <VBox prefHeight="519.0" prefWidth="201.0" BorderPane.alignment="CENTER">
+
+         <children>
+
+            <Region prefHeight="26.0" prefWidth="191.0" />
+
+         </children>
+
+      </VBox>
+
+   </left>
+
+</BorderPane>

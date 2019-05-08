@@ -1,0 +1,778 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ColorPicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.effect.Bloom?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.effect.ImageInput?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="938.0" prefWidth="1664.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
+   <top>
+      <VBox prefHeight="81.0" prefWidth="1661.0" BorderPane.alignment="CENTER">
+         <children>
+            <MenuBar prefHeight="71.0" prefWidth="1675.0" style="-fx-background-color: grey;" VBox.vgrow="NEVER">
+              <menus>
+                <Menu mnemonicParsing="false" text="File">
+                  <items>
+                   
+                                                            <MenuItem fx:id="menuNew" mnemonicParsing="false" text="New" />
+                        <MenuItem fx:id="g" mnemonicParsing="false" onAction="#fileChoose" text="Choose File..." />
+                        <MenuItem fx:id="menuOpen" mnemonicParsing="false" onAction="#menuOpenAction" text="Open…" />
+                        <Menu fx:id="menuOpenRecent" mnemonicParsing="false" text="Open Recent">
+                     <items>
+                        <MenuItem fx:id="menuRecentFile1" mnemonicParsing="false" onAction="#menuRecentFileAction1" text="Recent1" />
+                        <MenuItem fx:id="menuRecentFile2" mnemonicParsing="false" onAction="#menuRecentFileAction2" text="Recent2" />
+                        <MenuItem fx:id="menuRecentFile3" mnemonicParsing="false" onAction="#menuRecentFileAction3" text="Recent3" />
+                        <MenuItem fx:id="menuRecentFile4" mnemonicParsing="false" onAction="#menuRecentFileAction4" text="Recent4" />
+                        <MenuItem fx:id="menuRecentFile5" mnemonicParsing="false" onAction="#menuRecentFileAction5" text="Recent5" />
+                     </items>
+                  </Menu>
+                       
+                                                            <MenuItem fx:id="menuClose" mnemonicParsing="false" onAction="#menuCloseAction" text="Close" />
+                        <MenuItem fx:id="menuSave" mnemonicParsing="false" onAction="#menuSaveAction" text="Save" />
+                        <MenuItem fx:id="menuSaveAs" mnemonicParsing="false" onAction="#menuSaveAsAction" text="Save As…" />
+                       
+                                                            <MenuItem fx:id="menuQuit" mnemonicParsing="false" onAction="#menuQuitAction" text="Quit" />
+                    
+                                                      </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Edit">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Delete" />
+                     <MenuItem fx:id="menuUndo" mnemonicParsing="false" onAction="#undo" text="Undo" />
+                      <MenuItem fx:id="menuRedo" mnemonicParsing="false" onAction="#redo" text="Redo" />
+                        <MenuItem fx:id="startover" mnemonicParsing="false" onAction="#menuStartOverAction" text="Reset" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                  <items>
+                    <MenuItem mnemonicParsing="false" onAction="#menuHelpAction" text="About" />
+                  </items>
+                </Menu>
+                  <Menu mnemonicParsing="false" text="Settings">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#menuAboutAction" text="About" />
+                     </items>
+                  </Menu>
+              </menus>
+            </MenuBar>
+            <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="173.0" prefWidth="1617.0" style="-fx-background-color: black;">
+               <children>
+                  <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="173.0" prefWidth="325.0">
+                     <children>
+                        <ImageView fitHeight="97.0" fitWidth="96.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@LogoImages/icons8-photo_editor.png" />
+                           </image>
+                        </ImageView>
+                        <Text layoutX="116.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SnapEDIT" wrappingWidth="208.86474609375">
+                           <font>
+                              <Font size="42.0" />
+                           </font>
+                           <fill>
+                              <LinearGradient endX="1.0" endY="1.0">
+                                 <stops>
+                                    <Stop color="#1f3dab" />
+                                    <Stop color="WHITE" offset="1.0" />
+                                 </stops>
+                              </LinearGradient>
+                           </fill>
+                        </Text>
+                     </children></AnchorPane>
+                  <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="114.0" prefWidth="82.0">
+                     <children>
+                        <ImageView fx:id="undo" fitHeight="52.0" fitWidth="51.0" layoutX="15.0" onMouseClicked="#undo" pickOnBounds="true" style="-fx-cursor: HAND;">
+                           <image>
+                              <Image url="@LogoImages/icons8-undo.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="20.0" layoutY="65.0" prefHeight="21.0" prefWidth="41.0" text="Undo" textFill="#d0c5c5">
+                           <tooltip>
+                              <Tooltip text="Undo" />
+                           </tooltip>
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font></Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="121.0" layoutY="10.0" prefHeight="151.0" prefWidth="72.0">
+                     <children>
+                        <ImageView fx:id="redo" fitHeight="52.0" fitWidth="47.0" layoutX="15.0" onMouseClicked="#redo" pickOnBounds="true" style="-fx-cursor: HAND;">
+                           <image>
+                              <Image url="@LogoImages/icons8-redo.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="13.0" layoutY="66.0" prefHeight="21.0" prefWidth="46.0" text="Redo" textFill="#c9c3c3">
+                           <tooltip>
+                              <Tooltip text="Redo" />
+                           </tooltip>
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font></Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="184.0" layoutY="10.0" prefHeight="151.0" prefWidth="76.0">
+                     <children>
+                        <ImageView fx:id="crop" fitHeight="40.0" fitWidth="40.0" layoutX="14.0" layoutY="14.0" onMouseClicked="#cropimage" pickOnBounds="true" style="-fx-cursor: HAND;">
+                           <image>
+                              <Image url="@LogoImages/icons8-crop.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="lcrop" layoutX="16.0" layoutY="66.0" prefHeight="21.0" prefWidth="45.0" text="Crop" textFill="#bfbebe">
+                           <tooltip>
+                              <Tooltip text="Crop" />
+                           </tooltip>
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font></Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="247.0" layoutY="10.0" prefHeight="151.0" prefWidth="78.0">
+                     <children>
+                        <ImageView fitHeight="45.0" fitWidth="47.0" layoutX="16.0" layoutY="8.0" onMousePressed="#addText" pickOnBounds="true" style="-fx-cursor: HAND;">
+                           <image>
+                              <Image url="@LogoImages/icons8-text.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="21.0" layoutY="66.0" onMousePressed="#addText" prefHeight="21.0" prefWidth="36.0" text="Text" textFill="#f5f5f5">
+                           <tooltip>
+                              <Tooltip text="Text" />
+                           </tooltip>
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font></Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="310.0" layoutY="10.0" prefHeight="151.0" prefWidth="79.0">
+                     <children>
+                        <ImageView fx:id="fliphimage" fitHeight="50.0" fitWidth="50.0" layoutX="15.0" layoutY="6.0" onMouseClicked="#fliphimage" pickOnBounds="true" style="-fx-cursor: HAND;">
+                           <image>
+                              <Image url="@LogoImages/icons8-flip_horizontal.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="15.0" layoutY="66.0" prefHeight="21.0" prefWidth="45.0" text="FlipH" textFill="#d3c9c9">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font></Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="373.0" layoutY="10.0" prefHeight="151.0" prefWidth="78.0">
+                     <children>
+                        <ImageView fitHeight="52.0" fitWidth="53.0" layoutX="15.0" layoutY="4.0" onMouseClicked="#flipvimage" pickOnBounds="true">
+                           <image>
+                              <Image url="@LogoImages/icons8-flip_vertical.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="21.0" layoutY="66.0" prefHeight="21.0" prefWidth="47.0" text="FlipV" textFill="#d4dad1">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font></Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="436.0" layoutY="10.0" prefHeight="151.0" prefWidth="84.0">
+                     <children>
+                        <ImageView fx:id="visual" fitHeight="48.0" fitWidth="44.0" layoutX="15.0" layoutY="6.0" onMouseClicked="#brighten" pickOnBounds="true" style="-fx-cursor: HAND;">
+                           <image>
+                              <Image url="@LogoImages/icons8-visual_effects.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="19.0" layoutY="66.0" prefHeight="25.0" prefWidth="57.0" text="Visual" textFill="#c6bdbd">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font></Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="184.0" layoutY="10.0" prefHeight="151.0" prefWidth="87.0">
+                     <children>
+                        <ImageView fx:id="scaleimage" fitHeight="48.0" fitWidth="50.0" layoutX="15.0" layoutY="9.0" onMouseClicked="#applyReflection" pickOnBounds="true" style="-fx-cursor: HAND;">
+                           <image>
+                              <Image url="@LogoImages/icons8-resize.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="14.0" layoutY="66.0" prefHeight="21.0" prefWidth="50.0" text="Resize" textFill="#c9c1c1">
+                           <tooltip>
+                              <Tooltip text="Resize" />
+                           </tooltip>
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font></Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="562.0" layoutY="10.0" prefHeight="151.0" prefWidth="80.0">
+                     <children>
+                        <ImageView fx:id="rotate" fitHeight="49.0" fitWidth="46.0" layoutX="15.0" layoutY="8.0" onMouseClicked="#rotate" pickOnBounds="true" style="-fx-cursor: HAND;">
+                           <image>
+                              <Image url="@LogoImages/icons8-rotate.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="4.0" layoutY="66.0" prefHeight="21.0" prefWidth="70.0" text="Rotation" textFill="#ddd2d2">
+                           <tooltip>
+                              <Tooltip text="Rotation" />
+                           </tooltip>
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font></Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="1201.0" layoutY="10.0" prefHeight="66.0" prefWidth="103.0">
+                     <children>
+                        <Button layoutX="34.0" layoutY="29.0" mnemonicParsing="false" onAction="#add" prefHeight="42.0" prefWidth="97.0" style="-fx-background-color: #5d239b;" text="STICKERS" textFill="WHITE" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="1051.0" layoutY="10.0" prefHeight="173.0" prefWidth="191.0">
+                     <children>
+                        <Button layoutX="21.0" layoutY="29.0" mnemonicParsing="false" onAction="#fileChoose" prefHeight="41.0" prefWidth="121.0" style="-fx-background-color: #5d239b;" text="ADD IMAGE" textFill="WHITE">
+                           <font>
+                              <Font name="Comic Sans MS" size="15.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="173.0" prefWidth="155.0">
+                     <children>
+                        <ImageView fitHeight="62.0" fitWidth="66.0" layoutX="39.0" layoutY="2.0" onMouseClicked="#original" onMousePressed="#original" pickOnBounds="true" style="-fx-cursor: HAND;">
+                           <image>
+                              <Image url="@LogoImages/icons8-google_glass.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="15.0" layoutY="64.0" onMousePressed="#original" prefHeight="29.0" prefWidth="119.0" text="View Original" textFill="#e1d8d8">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  
+                                                                                    <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="173.0" prefWidth="119.0">
+                     <children>
+                        <ImageView fitHeight="51.0" fitWidth="55.0" layoutX="32.0" layoutY="11.0" onMouseClicked="#preview" onMouseDragged="#preview" onMousePressed="#preview" onMouseReleased="#preview" pickOnBounds="true" style="-fx-cursor: HAND;">
+                           <image>
+                              <Image url="@LogoImages/icons8-view_file.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="-1.0" layoutY="62.0" prefHeight="34.0" prefWidth="122.0" text="Before/After" textFill="#ebd9d9">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children></HBox>
+         </children>
+      </VBox>
+   </top>
+   <left>
+      <AnchorPane fx:id="mAnchorPane" maxHeight="1500.0" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="783.0" prefWidth="1344.0" style="-fx-background-color: #2b3038;" BorderPane.alignment="CENTER">
+         <children>
+            <Group fx:id="selectionGroup" layoutX="349.0" layoutY="103.0">
+               <children>
+                  <ImageView fx:id="sample" fitHeight="595.0" fitWidth="1145.0" layoutX="-213.0" layoutY="-18.0" onMouseEntered="#setflag" onMouseExited="#resetflag" pickOnBounds="true" />
+               </children>
+            </Group>
+            <ToolBar fx:id="tbPenDetails" layoutX="168.0" prefHeight="45.0" prefWidth="1051.0" style="-fx-background-color: transparent;">
+               <items>
+                  <Text fill="#e1d8d8" strokeType="OUTSIDE" strokeWidth="0.0" text="Penshape:" wrappingWidth="87.1748046875">
+                     <font>
+                        <Font name="System Bold Italic" size="18.0" />
+                     </font>
+                  </Text>
+                  <ToggleButton fx:id="tgbCircle" mnemonicParsing="false" prefHeight="27.0" prefWidth="21.0" style="-fx-background-color: transparent;" />
+                  <ToggleButton fx:id="tgbSquare" mnemonicParsing="false" prefHeight="27.0" prefWidth="23.0" style="-fx-background-color: transparent;" />
+                  <Separator orientation="VERTICAL" prefHeight="16.0" prefWidth="16.0" />
+                  <Text fill="#d9d8e1" strokeType="OUTSIDE" strokeWidth="0.0" text="PenSize:" wrappingWidth="71.1748046875">
+                     <font>
+                        <Font name="System Bold Italic" size="18.0" />
+                     </font>
+                  </Text>
+                  <Slider fx:id="sldPenSize">
+                     <effect>
+                        <Glow level="0.9" />
+                     </effect>
+                  </Slider>
+                  <Button fx:id="btnResetPenSize" mnemonicParsing="false" prefHeight="31.0" prefWidth="67.0" style="-fx-background-color: a8ff66;" text="Reset">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Button>
+                  <Separator orientation="VERTICAL" prefHeight="28.0" prefWidth="0.0" />
+                  <Text fill="#d2d3ce" layoutX="140.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PenPressure:" wrappingWidth="107.1748046875">
+                     <font>
+                        <Font name="System Bold Italic" size="17.0" />
+                     </font>
+                  </Text>
+                  <Slider fx:id="sldPenPressure" layoutX="207.0" layoutY="10.0">
+                     <effect>
+                        <Glow level="0.9" />
+                     </effect>
+                  </Slider>
+                  <Button fx:id="btnResetPenPressurebtnResetPenPressure" layoutX="347.0" layoutY="10.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="65.0" style="-fx-background-color: a8ff66 a8ff66;" text="Reset">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Button>
+               </items>
+            </ToolBar>
+            <ToolBar fx:id="tbcrop" layoutX="494.0" layoutY="680.0" prefHeight="40.0" prefWidth="192.0" style="-fx-background-color: transparent;">
+               <items>
+                  <ToggleButton fx:id="applycrop" mnemonicParsing="false" onAction="#cropi" style="-fx-background-color: a8ff66 a8ff66;" text="Apply">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </ToggleButton>
+                  <Separator orientation="VERTICAL" prefHeight="28.0" prefWidth="11.0" />
+                  <ToggleButton fx:id="unselect" mnemonicParsing="false" onAction="#unselect" prefHeight="27.0" prefWidth="86.0" style="-fx-background-color: a8ff66 a8ff66;" text="Unselect">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </ToggleButton>
+               </items>
+            </ToolBar>
+            <ToolBar fx:id="tbsticker" layoutX="701.0" layoutY="680.0" onDragDetected="#finaladd" prefHeight="45.0" prefWidth="64.0" style="-fx-background-color: transparent;">
+               <items>
+                  <ToggleButton fx:id="stick" mnemonicParsing="false" onAction="#finaladd" style="-fx-background-color: a8ff66 a8ff66;" text="Add" />
+               </items>
+            </ToolBar>
+            <ToolBar fx:id="tbtext" layoutX="778.0" layoutY="680.0" prefHeight="44.0" prefWidth="74.0" style="-fx-background-color: transparent;">
+               <items>
+                  <ToggleButton fx:id="bttext" mnemonicParsing="false" onAction="#finaladdtext" prefHeight="31.0" prefWidth="55.0" style="-fx-background-color: a8ff66 a8ff66;" text="Add" />
+               </items>
+            </ToolBar>
+            <ToolBar fx:id="tbrotate" layoutX="406.0" layoutY="680.0" prefHeight="32.0" prefWidth="65.0" style="-fx-background-color: transparent;">
+               <items>
+                  <ToggleButton fx:id="finalrotate" mnemonicParsing="false" onAction="#finalrotate" style="-fx-background-color: a8ff66 a8ff66;" text="Add">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </ToggleButton>
+               </items>
+            </ToolBar>
+            <HBox layoutY="740.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="46.0" prefWidth="1661.0" style="-fx-background-color: white;">
+               <children>
+                  <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="1200.0" text="Powered By SnapEDIT" />
+                  <Button maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#zoom" prefHeight="31.0" prefWidth="45.0" text="Zoom">
+                     <effect>
+                        <ImageInput>
+                           <source>
+                              <Image url="file:/C:/Users/shamb/eclipse-workspace/rock/src/application/LogoImages/icons8_zoom_in_32px.png" />
+                           </source>
+                        </ImageInput>
+                     </effect>
+                     <tooltip>
+                        <Tooltip text="Magnifier" />
+                     </tooltip>
+                  </Button>
+               </children>
+            </HBox>
+            <ToolBar fx:id="tbMain" layoutX="-7.0" layoutY="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="559.0" prefWidth="116.0" style="-fx-background-color: #2b3038;">
+               <items>
+                  <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="541.0" prefWidth="100.0">
+                     <children>
+                        <ColorPicker fx:id="cpkColor" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="99.0" style="-fx-background-color: #5d239b;" />
+                        <ToggleButton fx:id="tgbDropper" mnemonicParsing="false" prefHeight="31.0" prefWidth="104.0" style="-fx-background-color: white;" text="Dropper">
+                           <textFill>
+                              <LinearGradient endX="1.0" endY="1.0">
+                                 <stops>
+                                    <Stop color="#0f3cba" />
+                                    <Stop color="BLACK" offset="1.0" />
+                                 </stops>
+                              </LinearGradient>
+                           </textFill>
+                           <font>
+                              <Font name="System Bold Italic" size="16.0" />
+                           </font>
+                        </ToggleButton>
+                        <ToggleButton fx:id="tgbBucket" mnemonicParsing="false" prefHeight="31.0" prefWidth="105.0" style="-fx-background-color: #5d239b;" text="Bucket" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold Italic" size="16.0" />
+                           </font>
+                        </ToggleButton>
+                        <ToggleButton fx:id="tgbPen" layoutX="10.0" layoutY="91.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="105.0" style="-fx-background-color: white;" text="Pen">
+                           <font>
+                              <Font name="System Bold Italic" size="16.0" />
+                           </font>
+                        </ToggleButton>
+                        <ToggleButton fx:id="tgbSelectArea" layoutX="10.0" layoutY="64.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="100.0" style="-fx-background-color: #5d239b;" text="SelectArea" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold Italic" size="14.0" />
+                           </font>
+                        </ToggleButton>
+                        <Separator prefHeight="20.0" prefWidth="86.0">
+                           <VBox.margin>
+                              <Insets top="4.0" />
+                           </VBox.margin>
+                        </Separator>
+                        <Text fill="#fffafa" strokeType="OUTSIDE" strokeWidth="0.0" text="Filter" textAlignment="CENTER" wrappingWidth="80.21875">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                        <Button fx:id="btnGreyscale" mnemonicParsing="false" prefHeight="27.0" prefWidth="100.0" style="-fx-background-color: #5d239b;" text="GRay" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold Italic" size="15.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnSepia" layoutX="10.0" layoutY="172.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="100.0" style="-fx-background-color: white;" text="Sepia">
+                           <textFill>
+                              <LinearGradient endX="1.0" endY="1.0">
+                                 <stops>
+                                    <Stop color="#0f3cba" />
+                                    <Stop color="BLACK" offset="1.0" />
+                                 </stops>
+                              </LinearGradient>
+                           </textFill>
+                           <font>
+                              <Font name="System Bold Italic" size="15.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnGlow" layoutX="10.0" layoutY="199.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="100.0" style="-fx-background-color: #5d239b;" text="Glow" textFill="#eeeeee">
+                           <font>
+                              <Font name="System Bold Italic" size="14.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnInvert" layoutX="10.0" layoutY="226.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="100.0" style="-fx-background-color: white;" text="Invert" textFill="#151421">
+                           <font>
+                              <Font name="System Bold Italic" size="15.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnMonochrome" layoutX="10.0" layoutY="226.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="100.0" style="-fx-background-color: #5d239b;" text="Monochrome" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold Italic" size="14.0" />
+                           </font>
+                        </Button>
+                        <Separator prefWidth="200.0">
+                           <VBox.margin>
+                              <Insets top="4.0" />
+                           </VBox.margin>
+                        </Separator>
+                        <Text fill="#dad3d3" strokeType="OUTSIDE" strokeWidth="0.0" text="Effects" textAlignment="CENTER" wrappingWidth="83.21875">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Text>
+                        <ToggleButton fx:id="tgbEffects" layoutX="10.0" layoutY="118.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="104.0" style="-fx-background-color: #5d239b;" text="Effects" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold Italic" size="1.0" />
+                           </font>
+                        </ToggleButton>
+                                 <Button fx:id="btnReflection" layoutX="10.0" layoutY="199.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="100.0" style="-fx-background-color: white;" text="Reflection">
+                           <font>
+                              <Font name="System Bold Italic" size="16.0" />
+                           </font>
+                        </Button>
+                        <ToggleButton fx:id="btnBlend" mnemonicParsing="false" onAction="#applyBlend" prefHeight="31.0" prefWidth="101.0" style="-fx-background-color: #5d239b;" text="Stripes" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold Italic" size="16.0" />
+                           </font>
+                        </ToggleButton>
+                        <ToggleButton fx:id="btnLight" mnemonicParsing="false" onAction="#applyLighting" prefHeight="31.0" prefWidth="100.0" style="-fx-background-color: white;" text="Lighting">
+                           <font>
+                              <Font name="System Bold Italic" size="16.0" />
+                           </font>
+                        </ToggleButton>
+                        <ToggleButton fx:id="btnInner" mnemonicParsing="false" onAction="#applyinner" style="-fx-background-color: #5d239b;" text="Inner Shadow" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold Italic" size="14.0" />
+                           </font>
+                        </ToggleButton>
+                        <ToggleButton fx:id="btnPoint" mnemonicParsing="false" onAction="#applyPoint" prefHeight="31.0" prefWidth="99.0" style="-fx-background-color: white;" text="Point Spot">
+                           <font>
+                              <Font name="System Bold Italic" size="14.0" />
+                           </font>
+                        </ToggleButton>
+                        <ToggleButton fx:id="btnBox" mnemonicParsing="false" onAction="#applyBlur" prefHeight="31.0" prefWidth="107.0" style="-fx-background-color: #5d239b;" text="Box Blur" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold Italic" size="16.0" />
+                           </font>
+                        </ToggleButton>
+                        <Button fx:id="checker" mnemonicParsing="false" onAction="#checker" prefHeight="31.0" prefWidth="172.0" text="Checkered">
+                           <font>
+                              <Font name="System Bold Italic" size="16.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </VBox>
+               </items>
+            </ToolBar>
+         </children>
+      </AnchorPane>
+   </left>
+   <right>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="756.0" prefWidth="347.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+         <children>
+            <VBox layoutX="-21.0" layoutY="-18.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="614.0" prefWidth="364.0" style="-fx-background-color: white;">
+               <children>
+                  <AnchorPane layoutX="10.0" layoutY="10.0" minWidth="-Infinity" prefHeight="40.0" prefWidth="370.0" style="-fx-background-color: white;">
+                     <children>
+                        <Label alignment="CENTER" layoutX="47.0" layoutY="6.0" prefHeight="34.0" prefWidth="256.0" style="-fx-border-radius: 2px 2px 2px 2px;" text="Magic Elements">
+                           <textFill>
+                              <LinearGradient endX="1.0" endY="1.0">
+                                 <stops>
+                                    <Stop color="BLACK" />
+                                    <Stop color="#205dd6" offset="1.0" />
+                                 </stops>
+                              </LinearGradient>
+                           </textFill>
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="10.0" layoutY="75.0" prefHeight="70.0" prefWidth="320.0" style="-fx-background-color: white;">
+                     <children>
+                        <Slider fx:id="brightness" layoutX="14.0" layoutY="33.0" max="1.0" onMouseDragReleased="#brights" onMouseDragged="#bright" onMousePressed="#bright" onMouseReleased="#bright" prefHeight="16.0" prefWidth="206.0" />
+                        <TextField fx:id="brightnessvalue" layoutX="266.0" layoutY="20.0" prefHeight="27.0" prefWidth="39.0" text="0" />
+                        <Label layoutX="25.0" layoutY="6.0" prefHeight="27.0" prefWidth="109.0" text="Brightness">
+                           <textFill>
+                              <LinearGradient endX="1.0" endY="1.0">
+                                 <stops>
+                                    <Stop color="BLACK" />
+                                    <Stop color="#205dd6" offset="1.0" />
+                                 </stops>
+                              </LinearGradient>
+                           </textFill>
+                           <font>
+                              <Font name="System Bold Italic" size="18.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="brtick" fitHeight="28.0" fitWidth="41.0" layoutX="228.0" layoutY="22.0" onMouseClicked="#updatebright" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@LogoImages/icons8-checked.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="10.0" layoutY="140.0" prefHeight="65.0" prefWidth="714.0" style="-fx-background-color: white;">
+                     <children>
+                        <Slider fx:id="hue" layoutX="14.0" layoutY="33.0" max="1.0" onMousePressed="#hue" onMouseReleased="#hue" prefHeight="16.0" prefWidth="205.0" />
+                        <TextField fx:id="huevalue" layoutX="266.0" layoutY="20.0" prefHeight="27.0" prefWidth="39.0" text="0" />
+                        <Label layoutX="25.0" layoutY="6.0" prefHeight="17.0" prefWidth="80.0" text="Hue">
+                           <textFill>
+                              <LinearGradient endX="1.0" endY="1.0">
+                                 <stops>
+                                    <Stop color="BLACK" />
+                                    <Stop color="#205dd6" offset="1.0" />
+                                 </stops>
+                              </LinearGradient>
+                           </textFill>
+                           <font>
+                              <Font name="System Bold Italic" size="18.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="huetick" fitHeight="28.0" fitWidth="41.0" layoutX="232.0" layoutY="19.0" onMouseClicked="#updatehue" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@LogoImages/icons8-checked.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="10.0" layoutY="205.0" prefHeight="65.0" prefWidth="714.0" style="-fx-background-color: white;">
+                     <children>
+                        <Slider fx:id="saturation" layoutX="14.0" layoutY="33.0" max="1.0" onMouseDragged="#saturate" onMousePressed="#saturate" onMouseReleased="#saturate" prefHeight="16.0" prefWidth="204.0" />
+                        <TextField fx:id="saturationvalue" layoutX="266.0" layoutY="20.0" prefHeight="27.0" prefWidth="39.0" text="0" />
+                        <Label layoutX="25.0" layoutY="6.0" prefHeight="26.0" prefWidth="108.0" text="Saturation">
+                           <textFill>
+                              <LinearGradient endX="1.0" endY="1.0">
+                                 <stops>
+                                    <Stop color="BLACK" />
+                                    <Stop color="#205dd6" offset="1.0" />
+                                 </stops>
+                              </LinearGradient>
+                           </textFill>
+                           <font>
+                              <Font name="System Bold Italic" size="17.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="sattick" fitHeight="28.0" fitWidth="41.0" layoutX="232.0" layoutY="21.0" onMouseClicked="#updatesaturate" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@LogoImages/icons8-checked.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="10.0" layoutY="236.0" prefHeight="65.0" prefWidth="714.0" style="-fx-background-color: white;">
+                     <children>
+                        <Slider fx:id="opacity" layoutX="14.0" layoutY="33.0" onMousePressed="#saturate" onMouseReleased="#opacity" prefHeight="16.0" prefWidth="203.0">
+                           <effect>
+                              <Bloom />
+                           </effect>
+                        </Slider>
+                        <TextField fx:id="opacityvalue" layoutX="266.0" layoutY="20.0" prefHeight="27.0" prefWidth="39.0" text="0" />
+                        <Label layoutX="25.0" layoutY="6.0" prefHeight="17.0" prefWidth="80.0" text="Opacity">
+                           <textFill>
+                              <LinearGradient endX="1.0" endY="1.0">
+                                 <stops>
+                                    <Stop color="BLACK" />
+                                    <Stop color="#205dd6" offset="1.0" />
+                                 </stops>
+                              </LinearGradient>
+                           </textFill>
+                           <font>
+                              <Font name="System Bold Italic" size="17.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="opatick" fitHeight="28.0" fitWidth="41.0" layoutX="233.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@LogoImages/icons8-checked.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="10.0" layoutY="244.0" prefHeight="65.0" prefWidth="714.0" style="-fx-background-color: white;">
+                     <children>
+                        <Slider fx:id="blur" layoutX="14.0" layoutY="33.0" onMouseDragged="#blur" onMouseReleased="#blur" prefHeight="16.0" prefWidth="209.0" />
+                        <TextField fx:id="blurvalue" layoutX="266.0" layoutY="20.0" prefHeight="27.0" prefWidth="39.0" text="0" />
+                        <Label layoutX="25.0" layoutY="6.0" prefHeight="17.0" prefWidth="80.0" text="Blur">
+                           <textFill>
+                              <LinearGradient endX="1.0" endY="1.0">
+                                 <stops>
+                                    <Stop color="BLACK" />
+                                    <Stop color="#205dd6" offset="1.0" />
+                                 </stops>
+                              </LinearGradient>
+                           </textFill>
+                           <font>
+                              <Font name="System Bold Italic" size="17.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="blurtick" fitHeight="28.0" fitWidth="41.0" layoutX="232.0" layoutY="20.0" onMouseClicked="#updateblur" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@LogoImages/icons8-checked.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="10.0" layoutY="304.0" prefHeight="65.0" prefWidth="714.0" style="-fx-background-color: white;">
+                     <children>
+                        <Slider fx:id="contrast" layoutX="14.0" layoutY="33.0" onMouseDragged="#contrast" onMousePressed="#contrast" onMouseReleased="#contrast" prefHeight="16.0" prefWidth="210.0" />
+                        <TextField fx:id="contrastvalue" layoutX="266.0" layoutY="20.0" prefHeight="27.0" prefWidth="39.0" text="0" />
+                        <Label layoutX="25.0" layoutY="6.0" prefHeight="17.0" prefWidth="80.0" text="Contrast">
+                           <textFill>
+                              <LinearGradient endX="1.0" endY="1.0">
+                                 <stops>
+                                    <Stop color="BLACK" />
+                                    <Stop color="#205dd6" offset="1.0" />
+                                 </stops>
+                              </LinearGradient>
+                           </textFill>
+                           <font>
+                              <Font name="System Bold Italic" size="17.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="contick" fitHeight="28.0" fitWidth="41.0" layoutX="235.0" layoutY="20.0" onMouseClicked="#updatecontrast" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@LogoImages/icons8-checked.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="10.0" layoutY="353.0" prefHeight="65.0" prefWidth="714.0" style="-fx-background-color: white;">
+                     <children>
+                        <Slider fx:id="dropshadow" layoutX="14.0" layoutY="33.0" onMouseDragged="#dropshadow" onMouseReleased="#dropshadow" prefHeight="16.0" prefWidth="211.0" />
+                        <TextField fx:id="dropshadowvalue" layoutX="266.0" layoutY="20.0" prefHeight="27.0" prefWidth="39.0" text="0" />
+                        <Label layoutX="25.0" layoutY="6.0" prefHeight="26.0" prefWidth="115.0" text="DropShadow">
+                           <textFill>
+                              <LinearGradient endX="1.0" endY="1.0">
+                                 <stops>
+                                    <Stop color="BLACK" />
+                                    <Stop color="#205dd6" offset="1.0" />
+                                 </stops>
+                              </LinearGradient>
+                           </textFill>
+                           <font>
+                              <Font name="System Bold Italic" size="17.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="droptick" fitHeight="28.0" fitWidth="41.0" layoutX="232.0" layoutY="19.0" onMouseClicked="#updatedropshadow" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@LogoImages/icons8-checked.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="10.0" layoutY="402.0" prefHeight="65.0" prefWidth="714.0" style="-fx-background-color: white;">
+                     <children>
+                        <Slider fx:id="bloom" layoutX="14.0" layoutY="33.0" max="1.0" onMouseDragged="#bloom" onMouseReleased="#bloom" prefHeight="16.0" prefWidth="208.0" />
+                        <TextField fx:id="bloomvalue" layoutX="266.0" layoutY="20.0" prefHeight="27.0" prefWidth="39.0" text="0" />
+                        <Label layoutX="25.0" layoutY="6.0" prefHeight="17.0" prefWidth="80.0" text="Bloom">
+                           <textFill>
+                              <LinearGradient endX="1.0" endY="1.0">
+                                 <stops>
+                                    <Stop color="BLACK" />
+                                    <Stop color="#205dd6" offset="1.0" />
+                                 </stops>
+                              </LinearGradient>
+                           </textFill>
+                           <font>
+                              <Font name="System Bold Italic" size="17.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="bloomtick" fitHeight="28.0" fitWidth="41.0" layoutX="232.0" layoutY="19.0" onMouseClicked="#updatebloom" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@LogoImages/icons8-checked.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="10.0" layoutY="402.0" prefHeight="65.0" prefWidth="714.0" style="-fx-background-color: white;">
+                     <children>
+                        <Slider fx:id="outershadow" layoutX="14.0" layoutY="33.0" onMouseClicked="#outershadow" onMouseDragged="#outershadow" onMousePressed="#outershadow" onMouseReleased="#outershadow" prefHeight="16.0" prefWidth="207.0" />
+                        <TextField fx:id="outershadowvalue" layoutX="266.0" layoutY="20.0" prefHeight="27.0" prefWidth="39.0" text="0" />
+                        <Label layoutX="25.0" layoutY="6.0" prefHeight="26.0" prefWidth="122.0" text="OuterShadow">
+                           <textFill>
+                              <LinearGradient endX="1.0" endY="1.0">
+                                 <stops>
+                                    <Stop color="BLACK" />
+                                    <Stop color="#205dd6" offset="1.0" />
+                                 </stops>
+                              </LinearGradient>
+                           </textFill>
+                           <font>
+                              <Font name="System Bold Italic" size="17.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="ostick" fitHeight="28.0" fitWidth="33.0" layoutX="233.0" layoutY="20.0" onMouseClicked="#updateoutershadow" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@LogoImages/icons8-checked.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="10.0" layoutY="451.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="81.0" prefWidth="363.0" style="-fx-background-color: white;">
+                     <children>
+                        <Button fx:id="reset" layoutX="200.0" layoutY="36.0" mnemonicParsing="false" onAction="#reseteffect" prefHeight="39.0" prefWidth="109.0" style="-fx-background-color: a8ff66 a8ff66;" text="Reset" textFill="#3a3c38">
+                           <font>
+                              <Font name="System Bold Italic" size="18.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </VBox>
+            <Button layoutX="-18.0" layoutY="723.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#saveimg" prefHeight="39.0" prefWidth="374.0" style="-fx-background-color: #3d5bc9#3d5bc9;" text="SAVE" textFill="#cacdda" />
+         </children>
+      </AnchorPane>
+   </right>
+</BorderPane>
